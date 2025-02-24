@@ -19,7 +19,7 @@ public class Main {
                 jsonData.append(line); // อ่านไฟล์ JSON ทั้งหมด
             }
 
-            // แปลง String เป็น JSON Object
+            // แปลง String เป็น JSON Object เพื่อจะเรียกใช้แบบ key-value ได้
             JSONObject jsonObject = new JSONObject(jsonData.toString());
 
             // ดึงข้อมูล Nodes และ Edges
