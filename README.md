@@ -1,2 +1,0 @@
-# NodeBaseToArrayIndexBased
-prior test
