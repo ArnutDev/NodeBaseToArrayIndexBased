@@ -27,13 +27,13 @@ public class Main {
             JSONArray edgesArray = jsonObject.getJSONArray("edges");
 
             // สร้างโครงสร้างสำหรับเก็บข้อมูล Nodes
-            List<String> nodes = new ArrayList<>();
+            List<String> Nodes = new ArrayList<>();
             List<String> addressIn = new ArrayList<>();
             List<String> addressOut = new ArrayList<>();
 
             for (int i = 0; i < nodesArray.length(); i++) {
                 JSONObject node = nodesArray.getJSONObject(i);
-                nodes.add(node.getString("type")); // ดึงประเภทของ Node
+                Nodes.add(node.getString("type")); // ดึงประเภทของ Node
                 addressIn.add(""); // ค่าเริ่มต้น (จะอัปเดตทีหลัง)
                 addressOut.add(""); // ค่าเริ่มต้น (จะอัปเดตทีหลัง)
             }
@@ -57,7 +57,7 @@ public class Main {
             }
 
             // แสดงผล
-            System.out.println("Nodes: " + nodes);
+            System.out.println("Nodes: " + Nodes);
             System.out.println("addressIn: " + addressIn);
             System.out.println("addressOut: " + addressOut);
 
