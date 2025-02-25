@@ -9,18 +9,15 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String filePath = "raw-data.txt"; // พาธไฟล์ .txt
+        String filePath = "raw-data.txt";
 
         try {
-            // อ่านไฟล์ JSON
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode rootNode = objectMapper.readTree(new File(filePath));
 
-            // ดึงข้อมูล Nodes และ Edges
             JsonNode nodesArray = rootNode.get("nodes");
             JsonNode edgesArray = rootNode.get("edges");
 
-            // สร้างโครงสร้างสำหรับเก็บข้อมูล Nodes
             List<String> Nodes = new ArrayList<>();
             List<String> addressIn = new ArrayList<>();
             List<String> addressOut = new ArrayList<>();
@@ -29,7 +26,7 @@ public class Main {
                 String value = node.get("type").asText();
                 Nodes.add(value);
             }
-            int index = 0;//for count not first input
+            int index = 0;//นับindex ของ addressIn แรกใส่ ''
             for(JsonNode edge : edgesArray){
                 String source = edge.get("source").asText();
                 if(index!=0){
@@ -40,11 +37,11 @@ public class Main {
                 }
                 boolean found = false;
                 String target = edge.get("target").asText();
-                for(JsonNode edge2 : edgesArray){
-                    String source1 = edge2.get("source").asText();
-                    if(source1.equals(target)){
+                for(JsonNode test : edgesArray){
+                    String findSource = test.get("source").asText();
+                    if(findSource.equals(target)){
                         addressOut.add(target);
-//                        System.out.println("source: "+source1+" target: "+target);
+//                        System.out.println("source: "+nextSource+" target: "+target);
                         found = true;
                         break;
                     }
@@ -55,8 +52,6 @@ public class Main {
                 index++;
             }
 
-
-            // แสดงผล
             System.out.println("Nodes: " + Nodes);
             System.out.println("addressIn: " + addressIn);
             System.out.println("addressOut: " + addressOut);
