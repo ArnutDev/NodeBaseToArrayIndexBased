@@ -44,7 +44,7 @@ public class Main {
                     String source1 = edge2.get("source").asText();
                     if(source1.equals(target)){
                         addressOut.add(target);
-                        System.out.println("source: "+source1+" target: "+target);
+//                        System.out.println("source: "+source1+" target: "+target);
                         found = true;
                         break;
                     }
