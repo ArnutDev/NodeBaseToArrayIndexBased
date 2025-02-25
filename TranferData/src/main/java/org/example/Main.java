@@ -36,10 +36,22 @@ public class Main {
                     addressIn.add(source);
                 }
                 else{
-                    addressIn.add("\"\"");
+                    addressIn.add("\'\'");
                 }
+                boolean found = false;
                 String target = edge.get("target").asText();
-                addressOut.add(target);
+                for(JsonNode edge2 : edgesArray){
+                    String source1 = edge2.get("source").asText();
+                    if(source1.equals(target)){
+                        addressOut.add(target);
+                        System.out.println("source: "+source1+" target: "+target);
+                        found = true;
+                        break;
+                    }
+                }
+                if(found==false && index!=0){
+                    addressOut.add("\'\'");
+                }
                 index++;
             }
 
@@ -54,3 +66,7 @@ public class Main {
         }
     }
 }
+
+//Nodes : [input, org.maoz.prehandle.workers.neoai.aiclient.embedding.VoyageVerticle, org.maoz.prehandle.workers.neoai.aiclient.embedding.util.VoyageTransformVerticle, org.maoz.prehandle.workers.neoai.httpclient.HttpClientAdapterVerticle, org.maoz.prehandle.workers.neoai.notify.LineVerticle, org.maoz.prehandle.workers.neoai.notify.FacebookVerticle, org.maoz.prehandle.workers.neoai.notify.DiscordVerticle, org.maoz.prehandle.workers.neoai.ebtransform.ToPublishVerticle , org.maoz.prehandle.workers.neoai.output.OutputVerticle]
+//addressIn : ['', voyage-embed-node-2, http-client-adapter-verticle-node-4, voyage-transform-node-3, to-publish-verticle-node-10, to-publish-verticle-node-10, to-publish-verticle-node-10, to-publish-verticle-node-10]
+//addressOut : [voyage-embed-node-2, http-client-adapter-verticle-node-4, voyage-transform-node-3, to-publish-verticle-node-10, '', '', '', '']
