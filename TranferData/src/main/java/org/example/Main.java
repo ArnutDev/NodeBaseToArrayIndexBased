@@ -29,7 +29,7 @@ public class Main {
                 String value = node.get("type").asText();
                 Nodes.add(value);
             }
-            int index = 0;
+            int index = 0;//for count not first input
             for(JsonNode edge : edgesArray){
                 String source = edge.get("source").asText();
                 if(index!=0){
